@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
 from ..forms import QuestionForm
-from ..models import Question
+from ..models import Question, QuestionHistory
 
 @login_required(login_url='common:login')
 def question_create(request):
@@ -36,6 +36,11 @@ def question_modify(request, question_id):
     if request.method == "POST":
         form = QuestionForm(request.POST, instance = question)
         if form.is_valid():
+            date = question.create_date
+            if question.modify_date:
+                date = question.modify_date
+            prevQuestion = QuestionHistory(question=question, subject=question.subject, content=question.content, modify_date=date)
+            prevQuestion.save()
             question=form.save(commit=False)
             question.author=request.user
             question.modify_date=timezone.now()
