@@ -23,3 +23,5 @@
 - [참고 링크](https://velog.io/@shin6403/Git-git-%EC%BB%A4%EB%B0%8B-%EC%BB%A8%EB%B2%A4%EC%85%98-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0)
 - 위 링크로 진행해봅시다! 일단 본문이랑 footer는 선택 사항...
   - 대신 commit type과 subject는 잘 쓰기
+
+test merge
