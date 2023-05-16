@@ -6,6 +6,7 @@ from django.utils import timezone
 from ..forms import QuestionForm
 from ..models import Question, QuestionHistory
 
+
 @login_required(login_url='common:login')
 def question_create(request):
     """
@@ -23,33 +24,37 @@ def question_create(request):
         form = QuestionForm()
     context = {'form': form}
     return render(request, 'pybo/question_form.html', context)
+
+
 @login_required(login_url='common:login')
 def question_modify(request, question_id):
     '''
     pybo 질문 수정
     '''
     question = get_object_or_404(Question, pk=question_id)
+    date = question.create_date
+    if question.modify_date:
+        date = question.modify_date
+    prevQuestion = QuestionHistory(question=question, subject=question.subject, content=question.content,
+                                   modify_date=date)
 
     if request.user != question.author:
         messages.error(request, '수정 권한이 없습니다.')
-        return redirect('pybo:detail', question_id = question.id)
+        return redirect('pybo:detail', question_id=question.id)
     if request.method == "POST":
-        form = QuestionForm(request.POST, instance = question)
+        form = QuestionForm(request.POST, instance=question)
         if form.is_valid():
-            date = question.create_date
-            if question.modify_date:
-                date = question.modify_date
-            prevQuestion = QuestionHistory(question=question, subject=question.subject, content=question.content, modify_date=date)
             prevQuestion.save()
-            question=form.save(commit=False)
-            question.author=request.user
-            question.modify_date=timezone.now()
+            question = form.save(commit=False)
+            question.author = request.user
+            question.modify_date = timezone.now()
             question.save()
             return redirect('pybo:detail', question_id=question.id)
     else:
-        form=QuestionForm(instance=question)
-    context = {'form':form}
-    return render(request, 'pybo/question_form.html',context)
+        form = QuestionForm(instance=question)
+    context = {'form': form}
+    return render(request, 'pybo/question_form.html', context)
+
 
 @login_required(login_url='common:login')
 def question_delete(request, question_id):
@@ -62,6 +67,7 @@ def question_delete(request, question_id):
         return redirect('pybo:detail', question_id=question.id)
     question.delete()
     return redirect('pybo:index')
+
 
 def question_history(request, question_id):
     '''
