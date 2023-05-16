@@ -14,13 +14,13 @@ urlpatterns = [
     path('answer/create/<int:question_id>/', answer_views.answer_create, name='answer_create'),
     path('answer/modify/<int:answer_id>/', answer_views.answer_modify, name='answer_modify'),
     path('answer/delete/<int:answer_id>/', answer_views.answer_delete, name='answer_delete'),
-    # path('answer/history/<int:answer_id>/', answer_views.answer_history, name='answer_history'),
+    path('answer/history/<int:answer_id>/', answer_views.answer_history, name='answer_history'),
 
     # answer_views.py
     path('question/create/', question_views.question_create, name='question_create'),
     path('question/modify/<int:question_id>/', question_views.question_modify, name='question_modify'),
     path('question/delete/<int:question_id>', question_views.question_delete, name='question_delete'),
-    # path('question/history/<int:question_id>/', question_views.question_history, name='question_history'),
+    path('question/history/<int:question_id>/', question_views.question_history, name='question_history'),
 
     # 질문 댓글
     path('comment/create/question/<int:question_id>/', comment_views.comment_create_quesiton,
