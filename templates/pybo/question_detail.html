@@ -52,7 +52,7 @@
                                         <span>
                         - {{ comment.author }}, {{ comment.create_date }}
                                             {% if comment.modify_date %}
-                                                (수정: {{ comment.modify_date }})
+                                                ({{ comment.modify_count }}번 째 수정: {{ comment.modify_date }})
                                             {% endif %}
                     </span>
                                         {% if request.user == comment.author %}
@@ -118,7 +118,7 @@
                                     <span>
                         - {{ comment.author }}, {{ comment.create_date }}
                                         {% if comment.modify_date %}
-                                            (수정: {{ comment.modify_date }})
+                                            ({{ comment.modify_count }}번 째 수정: {{ comment.modify_date }})
                                         {% endif %}
                     </span>
                                     {% if request.user == comment.author %}
