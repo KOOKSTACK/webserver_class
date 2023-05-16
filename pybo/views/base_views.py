@@ -23,13 +23,15 @@ def detail(request, question_id):
     """
     # question = Question.objects. get(id = question_id)
     question = get_object_or_404(Question, pk = question_id)
+
+    comment_page = request.GET.get("page", "1") # 페이징에서 보여줄 페이지 1번부터 시작
+    comment_list = question.comment_set.order_by("-create_date") #-- 해당 페이지에 있는 댓글만 가져옴
     
-    comment_page = request.GET.get("page", "1") # 1번 page에 있는 모든 데이터
-    comment_list = Comment.objects.order_by('-create_date') #-- 페이지에 잇는 모든 답변 객체리스트
-    # print("comment lsit data is : " , comment_list) 
-    paginator = Paginator(comment_list, 10) #-- 10개씩 
+    # print("=================comment list is :" ,comment_list, " ==================")
+    
+    paginator = Paginator(comment_list, 5) #-- 5개씩 
     page_obj = paginator.get_page(comment_page)
-    # print("comment obj data is : " , page_obj) 흐음...
+    
     """
     comment obj data is :  <Page 1 of 2>
     [16/May/2023 23:54:42] "GET /pybo/1?page=1 HTTP/1.1" 200 14505
