@@ -30,6 +30,11 @@ class Answer(models.Model):
     def __str__(self):
         return self.content
 
+class AnswerHistory(models.Model):
+    answer = models.ForeignKey(Answer, on_delete=models.CASCADE)
+    content = models.TextField()
+    modify_date = models.DateTimeField(null=True, blank=True)
+
 class Comment(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField()
