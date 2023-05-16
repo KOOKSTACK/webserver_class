@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% for history in question_history_list %}
+        {{ history.subject }}, {{ history.content }}, {{ history.modify_date }} <br>
+    {% endfor %}
+{% endblock %}

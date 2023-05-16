@@ -26,7 +26,7 @@
                         <div class="d-flex justify-content-end">
                             {% if question.modify_date %}
                                 <div class="badge badge-light p-2 text-left mx-3">
-                                    <div class="mb-2">modified at</div>
+                                    <a href="{% url 'pybo:question_history' question.id %}" class="mb-2">modified at</a>
                                     <div>{{ question.modify_date }}</div>
                                 </div>
                             {% endif %}
@@ -95,7 +95,7 @@
                     <div class="d-flex justify-content-end">
                         {% if answer.modify_date %}
                             <div class="badge badge-light p-2 text-left mx-3">
-                                <div class="mb-2">modified at</div>
+                                <a href="{% url 'pybo:answer_history' answer.id %}"  class="mb-2">modified at</a>
                                 <div>{{ answer.modify_date }}</div>
                             </div>
                         {% endif %}
