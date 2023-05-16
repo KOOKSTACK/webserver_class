@@ -74,6 +74,6 @@ def question_history(request, question_id):
     pybo 질문 수정 내역 확인
     '''
     question = get_object_or_404(Question, pk=question_id)
-    question_history_list = question.questionhistory_set.all().order_by('id')
+    question_history_list = question.questionhistory_set.all().order_by('-modify_date')
     context = {'question_history_list': question_history_list}
     return render(request, 'pybo/question_history.html', context)
