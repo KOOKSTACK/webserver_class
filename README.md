@@ -15,6 +15,7 @@
    - 각 문제 구현은 브랜치를 파서 진행(push도 진행)
    - 구현한 기능은 main 브랜치에 pull request를 통해 merge
      - github pull request에서 직접 진행
+   - github actions django ci 적용했으니 괜찮은지 체크하고 merge하기
 #### 2. 브렌치 컨벤션
 - prob[과제 번호]
 - ex) 1. 질문 및 답변 수정에 대한 히스토리 viewing 구현 브랜치이면 `prob1`으로 이름을 짓는다.
