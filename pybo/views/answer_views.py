@@ -67,3 +67,12 @@ def answer_delete(request, answer_id):
     else:
         answer.delete()
     return redirect('pybo:detail', question_id=answer.question.id)
+
+def answer_history(request, answer_id):
+    '''
+    pybo 답변 수정 내역 확인
+    '''
+    answer = get_object_or_404(Answer, pk=answer_id)
+    answer_history_list = answer.answerhistory_set.all().order_by('id')
+    context = {'answer_history_list': answer_history_list}
+    return render(request, 'pybo/answer_history.html', context)
