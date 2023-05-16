@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
     {% for history in answer_history_list %}
-        {{ answer.content }}, {{ answer.modify_date }} <br>
+        {{ history.content }}, {{ history.modify_date }} <br>
     {% endfor %}
 {% endblock %}
