@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
+from .answer_gpt_views import answer_gpt
 
 from ..forms import QuestionForm
 from ..models import Question, QuestionHistory
@@ -19,6 +20,8 @@ def question_create(request):
             question.author = request.user
             question.create_date = timezone.now()
             question.save()
+            content = question.content
+            answer_gpt(request, question, content)
             return redirect('pybo:index')
     else:
         form = QuestionForm()
