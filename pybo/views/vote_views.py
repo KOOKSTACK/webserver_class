@@ -38,4 +38,4 @@ def vote_answer_comment(request, comment_id):
         messages.error(request, '본인이 작성한 댓글은 추천할 수 없습니다.')
     else:
         comment.voter.add(request.user)
-    return redirect('pybo:detail', question_id= comment.answer.id)
+    return redirect('pybo:detail', question_id= comment.answer.question.id)
