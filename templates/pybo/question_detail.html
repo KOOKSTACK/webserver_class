@@ -66,7 +66,7 @@
                                             {% comment %} 만약에 수정 날짜가 있다면 표시{% endcomment %}
                     </span>
                     {% comment %} 댓글 추천 {% endcomment %}
-                                             <a href="javascript:void(0)" data-uri="{% url 'pybo:vote_comment' comment.id  %}"
+                                             <a href="javascript:void(0)" data-uri="{% url 'pybo:vote_question_comment' comment.id  %}"
                                             class="recommend btn btn-sm btn-outline-secondary"> 추천
                                                 <span class="badge rounded-pill bg-success">{{comment.voter.count}}</span>
                                             </a>
@@ -179,6 +179,12 @@
                                             ({{ comment.modify_count }}번 째 수정: {{ comment.modify_date }})
                                         {% endif %}
                     </span>
+                                        {% comment %} 댓글 추천 {% endcomment %}
+                                        <a href="javascript:void(0)" data-uri="{% url 'pybo:vote_answer_comment' comment.id  %}"
+                                        class="recommend btn btn-sm btn-outline-secondary"> 추천
+                                            <span class="badge rounded-pill bg-success">{{comment.voter.count}}</span>
+                                        </a>
+                                        {% comment %} 댓글 추천 {% endcomment %}
                                     {% if request.user == comment.author %}
                                         <a href="{% url 'pybo:comment_modify_answer' comment.id %}" class="small">수정</a>
                                         <a href="{% url 'pybo:comment_delete_answer' comment.id %}"
