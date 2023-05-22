@@ -5,10 +5,12 @@
         {% for history in question_history_list %}
             <div class="card">
                 <div class="card-body">
-                    {{ question_history_list.count|sub:forloop.counter0 }}번 째 수정 전<br>
+                    <strong>
+                        {{ question_history_list.count|sub:forloop.counter0 }}번 째 수정 전<br>
+                    </strong>
+                    날짜: {{ history.modify_date }} <br>
                     제목: {{ history.subject }} <br>
                     내용: {{ history.content }} <br>
-                    날짜: {{ history.modify_date }} <br>
                 </div>
             </div>
         {% endfor %}
