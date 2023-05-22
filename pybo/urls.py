@@ -38,4 +38,7 @@ urlpatterns = [
     # 추천
     path('vote/question/<int:question_id>/', vote_views.vote_question, name='vote_question'),
     path('vote/answer/<int:answer_id>/', vote_views.vote_answer, name='vote_answer'),
+    path('vote/comment/question/<int:comment_id>/', vote_views.vote_question_comment, name='vote_question_comment'),
+    path('vote/comment/answer/<int:comment_id>/', vote_views.vote_answer_comment, name='vote_answer_comment'),
+    
 ]
