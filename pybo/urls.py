@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import base_views, question_views, answer_views, comment_views, vote_views
+from .views import base_views, question_views, answer_views, comment_question_view, comment_answer_view, vote_views
 
 from . import views
 
@@ -23,17 +23,17 @@ urlpatterns = [
     path('question/history/<int:question_id>/', question_views.question_history, name='question_history'),
 
     # 질문 댓글
-    path('comment/create/question/<int:question_id>/', comment_views.comment_create_quesiton,
+    path('comment/create/question/<int:question_id>/', comment_question_view.comment_create_quesiton,
          name='comment_create_quesiton'),
-    path('comment/modify/question/<int:comment_id>/', comment_views.comment_modify_question,
+    path('comment/modify/question/<int:comment_id>/', comment_question_view.comment_modify_question,
          name='comment_modify_question'),
-    path('comment/delete/question/<int:comment_id>/', comment_views.comment_delete_question,
+    path('comment/delete/question/<int:comment_id>/', comment_question_view.comment_delete_question,
          name='comment_delete_question'),
 
     # 답변 댓글
-    path('comment/create/answer/<int:answer_id>/', comment_views.comment_create_answer, name='comment_create_answer'),
-    path('comment/modify/answer/<int:comment_id>/', comment_views.comment_modify_answer, name='comment_modify_answer'),
-    path('comment/delete/answer/<int:comment_id>/', comment_views.comment_delete_answer, name='comment_delete_answer'),
+    path('comment/create/answer/<int:answer_id>/', comment_answer_view.comment_create_answer, name='comment_create_answer'),
+    path('comment/modify/answer/<int:comment_id>/', comment_answer_view.comment_modify_answer, name='comment_modify_answer'),
+    path('comment/delete/answer/<int:comment_id>/', comment_answer_view.comment_delete_answer, name='comment_delete_answer'),
 
     # 추천
     path('vote/question/<int:question_id>/', vote_views.vote_question, name='vote_question'),
