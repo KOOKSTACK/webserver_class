@@ -6,13 +6,16 @@ from django.utils import timezone
 import os
 import re
 import openai
+import environ
+
 
 from ..forms import AnswerForm
 from ..models import Question, Answer, AnswerHistory
 
-OPENAI_API_KEY = "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"
-YOUR_ORG_ID = "org-XCtzChIw6qhPLKieEBLSQhka"
+env = environ.Env(DEBUG=(bool, True)) #환경변수를 불러올 수 있는 상태로 세팅
 
+YOUR_ORG_ID = "org-XCtzChIw6qhPLKieEBLSQhka"
+OPENAI_API_KEY = env('OPENAI_API_KEY')
 
 def gpt_connect(content):
     print("=========== GPT CONNECTING...===========")
