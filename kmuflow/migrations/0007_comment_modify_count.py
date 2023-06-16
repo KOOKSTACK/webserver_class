@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('pybo', '0006_answer_voter_question_voter_alter_answer_author_and_more'),
+        ('kmuflow', '0006_answer_voter_question_voter_alter_answer_author_and_more'),
     ]
 
     operations = [

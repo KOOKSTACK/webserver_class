@@ -7,7 +7,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('pybo', '0007_comment_modify_count'),
+        ('kmuflow', '0007_comment_modify_count'),
     ]
 
     operations = [
@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
                 ('subject', models.CharField(max_length=200)),
                 ('content', models.TextField()),
                 ('modify_date', models.DateTimeField(blank=True, null=True)),
-                ('question', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='pybo.question')),
+                ('question', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='kmuflow.question')),
             ],
         ),
     ]

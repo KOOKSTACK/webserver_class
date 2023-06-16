@@ -10,7 +10,7 @@ def vote_question(request, question_id):
         messages.error(request, '본인이 작성한 질문은 추천할 수 없습니다.')
     else:
         question.voter.add(request.user)
-    return redirect('pybo:detail', question_id=question.id)
+    return redirect('kmuflow:detail', question_id=question.id)
 
 @login_required(login_url='common:login')
 def vote_answer(request, answer_id):
@@ -19,7 +19,7 @@ def vote_answer(request, answer_id):
         messages.error(request, '본인이 작성한 답변은 추천할 수 없습니다.')
     else:
         answer.voter.add(request.user)
-    return redirect('pybo:detail', question_id=answer.question.id)
+    return redirect('kmuflow:detail', question_id=answer.question.id)
 
 
 @login_required(login_url='common:login')
@@ -29,7 +29,7 @@ def vote_question_comment(request, comment_id):
         messages.error(request, '본인이 작성한 댓글은 추천할 수 없습니다.')
     else:
         comment.voter.add(request.user)
-    return redirect('pybo:detail', question_id= comment.question.id)
+    return redirect('kmuflow:detail', question_id= comment.question.id)
 
 @login_required(login_url='common:login')
 def vote_answer_comment(request, comment_id):
@@ -38,4 +38,4 @@ def vote_answer_comment(request, comment_id):
         messages.error(request, '본인이 작성한 댓글은 추천할 수 없습니다.')
     else:
         comment.voter.add(request.user)
-    return redirect('pybo:detail', question_id= comment.answer.question.id)
+    return redirect('kmuflow:detail', question_id= comment.answer.question.id)

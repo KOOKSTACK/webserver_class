@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('pybo', '0009_answerhistory'),
+        ('kmuflow', '0009_answerhistory'),
     ]
 
     operations = [

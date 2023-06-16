@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load pybo_filter %}
+{% load kmuflow_filter %}
 {% block content %}
 
     <div class="container my-3">
@@ -19,18 +19,22 @@
                 <div class="bg-light text-center p-3 border font-weight-bolder mb-1">
                     {{ question.voter.count }}
                 </div>
-                <a href="#" data-uri="{% url 'pybo:vote_question' question.id %}"
+                <a href="#" data-uri="{% url 'kmuflow:vote_question' question.id %}"
                    class="recommend btn btn-sm btn-secondary btn-block my-1">추천</a>
             </div>
             <div class="col-11">
                 <div class="card">
                     <div class="card-body">
-                        <div class="card-text" style="white-space: pre-line;">{{ question.content }}</div>
+                        <div class="card-text" >{{ question.content |mark}}</div>
                         <div class="d-flex justify-content-end">
                             {% if question.modify_date %}
                                 <div class="badge badge-light p-2 text-left mx-3">
+<<<<<<< HEAD:templates/pybo/question_detail.html
                                     <a href="{% url 'pybo:question_history' question.id %}"
                                        class="mb-2">{{ question.questionhistory_set.count }}번째 수정</a>
+=======
+                                    <a href="{% url 'kmuflow:question_history' question.id %}" class="mb-2">modified at</a>
+>>>>>>> GPT:templates/kmuflow/question_detail.html
                                     <div>{{ question.modify_date }}</div>
                                 </div>
                             {% endif %}
@@ -41,10 +45,10 @@
                         </div>
                         <div class="my-3">
                             {% if request.user == question.author %}
-                                <a href="{% url 'pybo:question_modify' question.id %}"
+                                <a href="{% url 'kmuflow:question_modify' question.id %}"
                                    class="btn btn-outline-secondary">수정</a>
                                 <a href="#" class="delete btn btn-outline-secondary"
-                                   data-uri="{% url 'pybo:question_delete' question.id %}">삭제</a>
+                                   data-uri="{% url 'kmuflow:question_delete' question.id %}">삭제</a>
                             {% endif %}
                         </div>
                         {% comment %} 답변 리스트가 있으면 {% endcomment %}
@@ -70,6 +74,7 @@
                                             {% endif %}
                                             {% comment %} 만약에 수정 날짜가 있다면 표시{% endcomment %}
                     </span>
+<<<<<<< HEAD:templates/pybo/question_detail.html
                                         {% comment %} 댓글 추천 {% endcomment %}
                                         <a href="javascript:void(0)"
                                            data-uri="{% url 'pybo:vote_question_comment' comment.id %}"
@@ -77,10 +82,18 @@
                                             <span class="badge rounded-pill bg-success">{{ comment.voter.count }}</span>
                                         </a>
                                         {% comment %} 댓글 추천 {% endcomment %}
+=======
+                    {% comment %} 댓글 추천 {% endcomment %}
+                                             <a href="javascript:void(0)" data-uri="{% url 'kmuflow:vote_question_comment' comment.id  %}"
+                                            class="recommend btn btn-sm btn-outline-secondary"> 추천
+                                                <span class="badge rounded-pill bg-success">{{comment.voter.count}}</span>
+                                            </a>
+                    {% comment %} 댓글 추천 {% endcomment %}
+>>>>>>> GPT:templates/kmuflow/question_detail.html
 
                                         {% if request.user == comment.author %}
-                                            <a href="{% url 'pybo:comment_modify_question' comment.id %}" class="small">수정</a>
-                                            <a href="{% url 'pybo:comment_delete_question' comment.id %}"
+                                            <a href="{% url 'kmuflow:comment_modify_question' comment.id %}" class="small">수정</a>
+                                            <a href="{% url 'kmuflow:comment_delete_question' comment.id %}"
                                                class="small delete">삭제</a>
                                         {% endif %}
                                         {% comment %} 만약에 댓글 쓴 유저라면 삭제 가능 {% endcomment %}
@@ -89,7 +102,7 @@
                             </div>
                         {% endif %}
                         <div>
-                            <a href="{% url 'pybo:comment_create_quesiton' question.id %}" class="small">
+                            <a href="{% url 'kmuflow:comment_create_quesiton' question.id %}" class="small">
                                 <small>댓글 추가..</small>
                             </a>
                         </div>
@@ -144,7 +157,9 @@
         </h5>
 
         {% for answer in question.answer_set.all %}
+            <a id="answer_{{ answer.id }}"></a>
             <div class="row my-3">
+<<<<<<< HEAD:templates/pybo/question_detail.html
                 <div class="col-1">
                     <div class="bg-light text-center p-3 border font-weight-bolder mb-1">
                         {{ answer.voter.count }}
@@ -167,6 +182,59 @@
                                 <div class="badge badge-light p-2 text-left">
                                     <div class="mb-2">{{ answer.author.username }}</div>
                                     <div>{{ answer.create_date }}</div>
+=======
+            <div class="col-1">
+                <div class="bg-light text-center p-3 border font-weight-bolder mb-1">
+                    {{ answer.voter.count }}
+                </div>
+                <a href="#" data-uri="{% url 'kmuflow:vote_answer' answer.id %}"
+                   class="recommend btn btn-sm btn-secondary btn-block my-1">추천</a>
+            </div>
+            <div class="col-11">
+                <div class="card">
+                <div class="card-body">
+                    <div class="card-text" >{{ answer.content|mark }}</div>
+                    <div class="d-flex justify-content-end">
+                        {% if answer.modify_date %}
+                            <div class="badge badge-light p-2 text-left mx-3">
+                                <a href="{% url 'kmuflow:answer_history' answer.id %}"  class="mb-2">modified at</a>
+                                <div>{{ answer.modify_date }}</div>
+                            </div>
+                        {% endif %}
+                        <div class="badge badge-light p-2 text-left">
+                            <div class="mb-2">{{ answer.author.username }}</div>
+                            <div>{{ answer.create_date }}</div>
+                        </div>
+                    </div>
+                    {% if request.user == answer.author %}
+                        <a href="{% url 'kmuflow:answer_modify' answer.id %}"
+                           class="btn btn-outline-secondary">수정</a>
+                        <a href="#" class="delete btn btn-outline-secondary"
+                           data-uri="{% url 'kmuflow:answer_delete' answer.id %}">삭제</a>
+                    {% endif %}
+                    {% if answer.comment_set.count > 0 %}
+                        <div class="mt-3">
+                            {% for comment in answer.comment_set.all %}
+                                <div class="comment py-2 text-muted">
+                                    <span style="white-space: pre-line;">{{ comment.content }}</span>
+                                    <span>
+                        - {{ comment.author }}, {{ comment.create_date }}
+                                        {% if comment.modify_date %}
+                                            ({{ comment.modify_count }}번 째 수정: {{ comment.modify_date }})
+                                        {% endif %}
+                    </span>
+                                        {% comment %} 댓글 추천 {% endcomment %}
+                                        <a href="javascript:void(0)" data-uri="{% url 'kmuflow:vote_answer_comment' comment.id  %}"
+                                        class="recommend btn btn-sm btn-outline-secondary"> 추천
+                                            <span class="badge rounded-pill bg-success">{{comment.voter.count}}</span>
+                                        </a>
+                                        {% comment %} 댓글 추천 {% endcomment %}
+                                    {% if request.user == comment.author %}
+                                        <a href="{% url 'kmuflow:comment_modify_answer' comment.id %}" class="small">수정</a>
+                                        <a href="{% url 'kmuflow:comment_delete_answer' comment.id %}"
+                                           class="small delete">삭제</a>
+                                    {% endif %}
+>>>>>>> GPT:templates/kmuflow/question_detail.html
                                 </div>
                             </div>
                             {% if request.user == answer.author %}
@@ -210,13 +278,21 @@
                                 </a>
                             </div>
                         </div>
+<<<<<<< HEAD:templates/pybo/question_detail.html
+=======
+                    {% endif %}
+                    <div>
+                        <a href="{% url 'kmuflow:comment_create_answer' answer.id %}" class="small">
+                            <small>댓글 추가..</small>
+                        </a>
+>>>>>>> GPT:templates/kmuflow/question_detail.html
                     </div>
                 </div>
             </div>
 
         {% endfor %}
 
-        <form action="{% url 'pybo:answer_create' question.id %}" method="post" class="my-3">
+        <form action="{% url 'kmuflow:answer_create' question.id %}" method="post" class="my-3">
             {% csrf_token %}
             {% if form.errors %}
                 <div class="alert alert-danger" role="alert">

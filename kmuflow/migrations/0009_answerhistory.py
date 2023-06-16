@@ -7,7 +7,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('pybo', '0008_questionhistory'),
+        ('kmuflow', '0008_questionhistory'),
     ]
 
     operations = [
@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('content', models.TextField()),
                 ('modify_date', models.DateTimeField(blank=True, null=True)),
-                ('answer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='pybo.answer')),
+                ('answer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='kmuflow.answer')),
             ],
         ),
     ]
