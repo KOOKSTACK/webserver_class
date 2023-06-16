@@ -1,8 +1,5 @@
 from django.urls import path
-<<<<<<< HEAD:pybo/urls.py
 from .views import base_views, question_views, answer_views, comment_question_view, comment_answer_view, vote_views
-=======
->>>>>>> GPT:kmuflow/urls.py
 
 from .views.Comment import comment_views
 from .views.Question import question_views
