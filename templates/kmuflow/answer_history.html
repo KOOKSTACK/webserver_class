@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load kmuflow_filter %}
+{% block content %}
+    {% if answer_history_list %}
+        {% for history in answer_history_list %}
+            <div class="card">
+                <div class="card-body">
+                    {{ answer_history_list.count|sub:forloop.counter0 }}번 째 수정 전<br>
+                    내용: {{ history.content }} <br>
+                    날짜: {{ history.modify_date }} <br>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        답변 수정 내역이 없습니다.
+    {% endif %}
+{% endblock %}
